@@ -1,30 +1,220 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AI Medical Image Analyzer</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
+            background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+            position:relative;
+        }
+
+        /* Animated Background Circles */
+
+        .circle{
+            position:absolute;
+            border-radius:50%;
+            background:rgba(255,255,255,0.1);
+            animation:float 6s infinite ease-in-out;
+        }
+
+        .circle1{
+            width:250px;
+            height:250px;
+            top:-80px;
+            left:-80px;
+        }
+
+        .circle2{
+            width:180px;
+            height:180px;
+            bottom:-60px;
+            right:-60px;
+            animation-delay:2s;
+        }
+
+        .circle3{
+            width:120px;
+            height:120px;
+            top:70%;
+            left:10%;
+            animation-delay:4s;
+        }
+
+        @keyframes float{
+            0%{
+                transform:translateY(0px);
+            }
+            50%{
+                transform:translateY(-20px);
+            }
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+        /* Main Container */
+
+        .container{
+            width:450px;
+            padding:40px;
+            border-radius:25px;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(12px);
+            box-shadow:0 8px 32px rgba(0,0,0,0.4);
+            text-align:center;
+            color:white;
+            z-index:10;
+            animation:fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0px);
+            }
+        }
+
+        .icon{
+            font-size:70px;
+            margin-bottom:15px;
+            animation:pulse 2s infinite;
+        }
+
+        @keyframes pulse{
+            0%{
+                transform:scale(1);
+            }
+            50%{
+                transform:scale(1.1);
+            }
+            100%{
+                transform:scale(1);
+            }
+        }
+
+        h1{
+            font-size:32px;
+            margin-bottom:10px;
+            font-weight:700;
+        }
+
+        p{
+            font-size:16px;
+            color:#e0e0e0;
+            margin-bottom:25px;
+        }
+
+        /* Upload Box */
+
+        .upload-box{
+            border:2px dashed rgba(255,255,255,0.5);
+            padding:25px;
+            border-radius:15px;
+            margin-bottom:25px;
+            transition:0.3s;
+        }
+
+        .upload-box:hover{
+            background:rgba(255,255,255,0.1);
+            transform:scale(1.02);
+        }
+
+        input[type="file"]{
+            color:white;
+            font-size:15px;
+        }
+
+        /* Button */
+
+        button{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            background:linear-gradient(to right,#00c6ff,#0072ff);
+            color:white;
+            font-size:18px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.4s;
+            box-shadow:0 4px 15px rgba(0,114,255,0.4);
+        }
+
+        button:hover{
+            transform:translateY(-3px);
+            box-shadow:0 8px 25px rgba(0,114,255,0.6);
+        }
+
+        /* Footer */
+
+        .footer{
+            margin-top:20px;
+            font-size:13px;
+            color:#dcdcdc;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
+    <!-- Background Animation -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <!-- Main Card -->
     <div class="container">
+
+        <div class="icon">🩺</div>
 
         <h1>AI Medical Image Analyzer</h1>
 
-        <p>Upload X-Ray or MRI Image</p>
+        <p>
+            Upload X-Ray or MRI Images and detect diseases instantly using
+            Artificial Intelligence & Deep Learning.
+        </p>
 
         <form action="/predict" method="POST" enctype="multipart/form-data">
 
-            <input type="file" name="image" required>
+            <div class="upload-box">
 
-            <br><br>
+                <input type="file" name="image" required>
+
+            </div>
 
             <button type="submit">Analyze Image</button>
 
         </form>
+
+        <div class="footer">
+            Powered by AI • TensorFlow • CNN
+        </div>
 
     </div>
 
