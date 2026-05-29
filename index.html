@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>AI Medical Image Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>AI Medical Image Analyzer</h1>
+
+        <p>Upload X-Ray or MRI Image</p>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="image" required>
+
+            <br><br>
+
+            <button type="submit">Analyze Image</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
